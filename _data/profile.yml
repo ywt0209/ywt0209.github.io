@@ -1,50 +1,55 @@
-primary_name: "Your Name"
-secondary_name: ""
-navbar_name: "Your Name"
+primary_name: "Yu-Wen Tseng"
+secondary_name: "曾昱文"
+navbar_name: "Yu-Wen Tseng"
 
 positions:
-- logo: /assets/images/badges/MIT_Social_circle.png  # Logo is optional
-  name: Position 1 with logo
-- name: Position 2 without logo
+- name: Ph.D. Student
+  institution: National Taiwan University
+- name: Research Assistant
+  institution: Academia Sinica
 
 
-email: "your@email.com"
-# cv_link: link-to-your-cv-file
-gscholar: xFmQpf4AAAAJ  # This is an example, replace it with your own Google Scholar ID
-github: your_github_id
-twitter: your_twitter_id  # Do not include the '@' symbol
+email: "d12922018@csie.ntu.edu.tw"
+cv_link: /assets/CV.pdf
+gscholar: 3NGcUfcAAAAJ  # Please replace with your own Google Scholar ID
+github: ywt0209
+# twitter: your_twitter_id  # Do not include the '@' symbol
 # wechat_qrcode: /assets/images/etc/wechat.jpg
 # wechat_prompt: >-
 #   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
-# linkedin: your-linked-in-id
-# orcid: 0000-0000-0000-0000
+linkedin: yu-wen-tseng-840586343
+orcid: 0009-0001-8332-8444
 
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    A <a href="https://en.wikipedia.org/wiki/Bicolor_cat" target="_blank">bicolor cat</a> is a cat with white fur combined with fur of some other colour, for example solid black, tabby, or colourpointed.
+    I am Yu-Wen Tseng, a Ph.D. student at National Taiwan University, specializing in Computer Science research.
   </p>
   <p>
-    There are various patterns of a bicolour cat. These range from the Van-patterned (colour on the crown of the head 
-    and the tail only) to a solid colour with a throat locket or medallion. Bicolour coats are found in many cat breeds, 
-    as well as being common in domestic longhair and domestic shorthair cats.
+    My research interests include machine learning, artificial intelligence, and data science. I am committed to exploring 
+    the potential of emerging technologies in practical applications and hope to make positive contributions to society 
+    through academic research.
   </p>
 
-portrait_url: /assets/images/photos/portrait.jpg
+portrait_url: /assets/images/photos/profile.jpg
 portrait_caption: >-
   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
 
 education:
-- name: Massachusetts Institute of Technology
-  logo: /assets/images/badges/MIT_Social_circle.png
+- name: National Taiwan University
+  logo: /assets/images/badges/NTU.png
   position: >- 
-    Department of Electrical Engineering and Computer Science <br/>
+    Department of Computer Science and Information Engineering <br/>
     Ph.D. Student
-  date: Sep. 2024 - present
-- name: Peking University
-  logo: /assets/images/badges/PKU_red.png
-  position: B.S. in Computer Science
-  date: Sep. 2019 - Jul. 2021
+  date: 2023 - Present
+- name: National Yang Ming Chiao Tung University
+  logo: /assets/images/badges/NYCU.png
+  position: M.S. in Institue of Electronics
+  date: 2021 - 2023
+- name: National Yang Ming Chiao Tung University
+  logo: /assets/images/badges/NYCU.png
+  position: B.S. in Electronic Engineering and Computer Science Honors Program
+  date: 2017 - 2021
 
 # experience:
 # - name: Peking University
@@ -53,9 +58,15 @@ education:
 #   date: Sep. 2019 - Jul. 2021
 
 awards:
-- name: Award Name 2
+- name: Epson Innovation Contest Finalist
+  date: 2025
+  organization: Epson (Taipei, Taiwan)
+- name: Ministry of Education PhD Scholarship
   date: 2024
-- name: Award Name 1 
-  date: 2021
-- name: A quick brown fox jumps over the lazy dog and runs away award
-  date: 2021
+  organization: Ministry of Education (Taipei, Taiwan)
+- name: Hon Hai Technology Award
+  date: 2024
+  organization: Foxconn Education Foundation (New Taipei, Taiwan)
+- name: FamilyMart AI Scholarship
+  date: 2023
+  organization: FamilyMart (New Taipei, Taiwan)

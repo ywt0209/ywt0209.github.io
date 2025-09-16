@@ -2,11 +2,9 @@ primary_name: "Yu-Wen Tseng"
 secondary_name: "曾昱文"
 navbar_name: "Yu-Wen Tseng"
 
-positions:
-- name: Ph.D. Student
-  institution: National Taiwan University
-- name: Research Assistant
-  institution: Academia Sinica
+# positions:
+# - name: Ph.D. Student
+#   institution: National Taiwan University
 
 
 email: "d12922018@csie.ntu.edu.tw"
@@ -23,12 +21,23 @@ orcid: 0009-0001-8332-8444
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I am Yu-Wen Tseng, a Ph.D. student at National Taiwan University, specializing in Computer Science research.
+    Doctor of Philosophy Student <br/>
+    <a href="https://www.csie.ntu.edu.tw/" target="_blank">Department of Computer Science &amp; Information Engineering</a> <br/>
+    <a href="https://www.ntu.edu.tw/" target="_blank">National Taiwan University</a> <br/>
   </p>
   <p>
-    My research interests include machine learning, artificial intelligence, and data science. I am committed to exploring 
-    the potential of emerging technologies in practical applications and hope to make positive contributions to society 
-    through academic research.
+    Laboratory <br/>
+    <a href="https://aimm.cmlab.csie.ntu.edu.tw/" target="_blank">Artificial Intelligence and Multimedia (AIMM) Research Group</a> <br/>
+    <a href="https://www.cmlab.csie.ntu.edu.tw/new_cml_website/index.php" target="_blank">Communications and Multimedia Laboratory (CMLab)</a> <br/>
+  </p>
+  <p>
+    Advisor <br/>
+    <a href="https://www.csie.ntu.edu.tw/~wenhuang/" target="_blank">Wen-Huang Cheng</a> <br/>
+    <a href="https://basiclab.lab.nycu.edu.tw/" target="_blank">Hong-Han Shuai</a> 
+  </p>
+  <p>
+    My work centers on advancing vision-centric perception for driving environments, specifically in the domains of semantic occupancy prediction and test-time adaptation when facing unknown scenes. 
+    Looking forward, I plan to integrate these perception frameworks with the growing field of robotics, investigating how to build autonomous agents capable of continual learning and robust operation in complex 3D physical worlds.
   </p>
 
 portrait_url: /assets/images/photos/profile.jpg

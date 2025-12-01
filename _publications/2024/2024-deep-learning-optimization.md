@@ -1,7 +1,7 @@
 ---
 title:          "Deep Learning Model Optimization: An Improved Approach Based on Attention Mechanisms"
 date:           2024-03-15 00:01:00 +0800
-selected:       true
+selected:       false
 pub:            "International Conference on Machine Learning (ICML)"
 pub_date:       "2024"
 abstract: >-

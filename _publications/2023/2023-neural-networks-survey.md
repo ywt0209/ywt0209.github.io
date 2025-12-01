@@ -1,7 +1,7 @@
 ---
 title:          "Neural Network Architecture Design: A Comprehensive Survey from Theory to Practice"
 date:           2023-08-20 00:01:00 +0800
-selected:       true
+selected:       false
 pub:            "Journal of Machine Learning Research (JMLR)"
 pub_date:       "2023"
 abstract: >-

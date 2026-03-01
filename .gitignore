@@ -1,4 +1,6 @@
 .DS_Store
+resume/*.tex
+resume/*.sty
 resume/*.aux
 resume/*.fdb_latexmk
 resume/*.fls

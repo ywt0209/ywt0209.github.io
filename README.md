@@ -17,9 +17,7 @@ Ph.D. student in Computer Science & Information Engineering at National Taiwan U
 │   ├── css/style.css   # Stylesheet
 │   └── images/         # Profile photo and other images
 ├── resume/
-│   ├── resume.tex      # LaTeX source
-│   ├── resume-style.sty
-│   └── resume.pdf      # Compiled PDF
+│   └── resume.pdf      # Resume PDF
 └── .gitignore
 ```
 
@@ -32,15 +30,6 @@ python3 -m http.server 8000
 ```
 
 Then open [http://localhost:8000](http://localhost:8000).
-
-## Resume
-
-The resume is written in LaTeX. To recompile:
-
-```bash
-cd resume
-pdflatex resume.tex
-```
 
 ## License
 

@@ -1,12 +1,3 @@
----
-title: "Progressive Gaussian Transformer with Anisotropy-aware Sampling for Open Vocabulary Occupancy Prediction"
-author: "Chi Yan et al."
-venue: "ICLR 2026"
-category: "Semantic Occupancy Prediction"
-arxiv: "https://arxiv.org/abs/2510.04759"
-github: "https://github.com/yanchi-3dv/PG-Occ"
----
-
 ## 1. Paper at a Glance
 
 - **Task**: Open-vocabulary 3D occupancy prediction

@@ -6,17 +6,9 @@
   <title>PG-Occ — Folio</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.querySelectorAll(".math-display").forEach(function(el) {
-        katex.render(el.getAttribute("data-expr"), el, {displayMode: true, throwOnError: false});
-      });
-      document.querySelectorAll(".math-inline").forEach(function(el) {
-        katex.render(el.getAttribute("data-expr"), el, {displayMode: false, throwOnError: false});
-      });
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/contrib/auto-render.min.js"></script>
   <style>
     .note-back {
       font-size: 0.88rem;
@@ -26,7 +18,11 @@
     }
     .note-back:hover { opacity: 0.6; }
 
-    .note-title {
+    .note-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .note-header h1 {
       font-size: 1.45rem;
       line-height: 1.35;
       letter-spacing: -0.02em;
@@ -36,20 +32,17 @@
     .note-meta {
       font-size: 0.88rem;
       color: #888;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
     }
 
     .note-badges {
       display: flex;
       gap: 0.4rem;
       flex-wrap: wrap;
-      margin-bottom: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
+    /* ── Rendered markdown body ── */
     .note-body h2 {
       font-size: 1.15rem;
       margin-top: 2rem;
@@ -64,14 +57,6 @@
       margin-top: 1.2rem;
       margin-bottom: 0.4rem;
       color: #444;
-    }
-
-    .note-body h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-top: 1rem;
-      margin-bottom: 0.3rem;
-      color: #555;
     }
 
     .note-body p {
@@ -102,6 +87,8 @@
       font-size: 0.95rem;
     }
 
+    .note-body blockquote p { margin-bottom: 0; }
+
     .note-body table {
       width: 100%;
       border-collapse: collapse;
@@ -123,54 +110,26 @@
       vertical-align: top;
     }
 
-    .note-body tr:last-child td {
-      border-bottom: none;
-    }
+    .note-body tr:last-child td { border-bottom: none; }
 
-    .note-figure {
-      margin: 1.2rem 0;
-      text-align: center;
-    }
-
-    .note-figure img {
+    .note-body img {
       max-width: 100%;
       border: 1px solid #e5e7eb;
       border-radius: 6px;
+      display: block;
+      margin: 1rem auto 0.3rem;
     }
 
-    .note-figure figcaption {
+    .note-body em {
+      display: block;
+      text-align: center;
       font-size: 0.83rem;
       color: #888;
-      margin-top: 0.4rem;
-      font-style: italic;
+      margin-bottom: 1rem;
     }
 
-    .tag-stage {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #2563eb;
-    }
-
-    .takeaway {
-      background: #f7f9ff;
-      border: 1px solid #dbeafe;
-      border-radius: 6px;
-      padding: 0.8rem 1rem;
-      font-size: 0.92rem;
-      color: #333;
+    .note-body .katex-display {
       margin: 1rem 0;
-    }
-
-    .thoughts-section {
-      background: #fafaf8;
-      border-left: 3px solid #e5a000;
-      padding: 0.8rem 1rem;
-      border-radius: 0 6px 6px 0;
-      margin-top: 0.5rem;
-    }
-
-    .thoughts-section li {
-      color: #444;
     }
   </style>
 </head>
@@ -189,131 +148,42 @@
   <section class="section">
     <a class="note-back" href="index.html">← Folio</a>
 
-    <h1 class="note-title">Progressive Gaussian Transformer with Anisotropy-aware Sampling for Open Vocabulary Occupancy Prediction</h1>
-
-    <div class="note-meta">
-      <span>Chi Yan et al.</span>
-      <span>·</span>
-      <span>ICLR 2026</span>
-      <span>·</span>
-      <span>Semantic Occupancy Prediction</span>
-    </div>
-
-    <div class="note-badges">
-      <a href="https://github.com/yanchi-3dv/PG-Occ" target="_blank">
-        <img src="https://img.shields.io/badge/GitHub-Repo-black?logo=github" alt="GitHub" />
-      </a>
-      <a href="https://arxiv.org/abs/2510.04759" target="_blank">
-        <img src="https://img.shields.io/badge/arXiv-2510.04759-b31b1b?logo=arxiv" alt="arXiv" />
-      </a>
-    </div>
-
-    <div class="note-body">
-
-      <h2>1. Paper at a Glance</h2>
-      <ul>
-        <li><strong>Task:</strong> Open-vocabulary 3D occupancy prediction</li>
-        <li><strong>Core idea:</strong> Progressive Gaussian refinement for sparse yet fine-grained scene modeling</li>
-        <li><strong>Keywords:</strong> Gaussian representation, densification, anisotropy-aware sampling, open-vocabulary occupancy</li>
-      </ul>
-
-      <h2>2. Overview</h2>
-      <figure class="note-figure">
-        <img src="../assets/images/folio/pg-occ-fig1.png" alt="Overview of the PG-Occ framework" />
-        <figcaption>Figure 1. Overview of the PG-Occ framework.</figcaption>
-      </figure>
-
-      <h3>Main intuition</h3>
-      <ul>
-        <li>Start from coarse base Gaussians</li>
-        <li>Progressively densify under-modeled regions</li>
-        <li>Use anisotropy-aware sampling for better feature aggregation</li>
-        <li>Improve fine-grained occupancy prediction while keeping efficiency</li>
-      </ul>
-
-      <h2>3. Method Breakdown</h2>
-      <figure class="note-figure">
-        <img src="../assets/images/folio/pg-occ-fig2.png" alt="Architecture of the proposed PG-Occ framework" />
-        <figcaption>Figure 2. Architecture of the proposed PG-Occ framework.</figcaption>
-      </figure>
-
-      <h3>3.1 Base Gaussian Representation</h3>
-      <p>PG-Occ represents the 3D scene as a set of sparse <strong>feature Gaussian blobs</strong>:</p>
-      <div class="math-display" data-expr="G = \{G_i : (\mu_i, s_i, r_i, \sigma_i, f_i) \mid i=1,\dots,N \}"></div>
-
-      <table>
-        <thead>
-          <tr><th>Symbol</th><th>Meaning</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="math-inline" data-expr="\mu_i"></span></td><td>3D center of the Gaussian blob</td></tr>
-          <tr><td><span class="math-inline" data-expr="s_i"></span></td><td>Axis-wise scale of the Gaussian blob</td></tr>
-          <tr><td><span class="math-inline" data-expr="r_i"></span></td><td>Rotation quaternion defining Gaussian orientation</td></tr>
-          <tr><td><span class="math-inline" data-expr="\sigma_i"></span></td><td>Opacity / density term</td></tr>
-          <tr><td><span class="math-inline" data-expr="f_i"></span></td><td>512-d text-aligned semantic feature</td></tr>
-          <tr><td><span class="math-inline" data-expr="N"></span></td><td>Total number of Gaussian blobs</td></tr>
-        </tbody>
-      </table>
-
-      <blockquote>
-        In the default PG-Occ setting, the model starts from <strong>4,000</strong> base Gaussian queries and uses two progressive densification layers, each adding <strong>1,000</strong> new queries.
-      </blockquote>
-
-      <figure class="note-figure">
-        <img src="../assets/images/folio/pg-occ-fig3.png" alt="Progressive Online Densification and Anisotropy-aware Feature Sampling" />
-        <figcaption>Figure 3. Illustration of the Progressive Online Densification and Anisotropy-aware Feature Sampling modules.</figcaption>
-      </figure>
-
-      <h3>3.2 Progressive Feed-forward Densification</h3>
-      <h3>3.3 Anisotropy-aware Sampling</h3>
-      <h3>3.4 Open-vocabulary Prediction Head</h3>
-
-      <h2>4. Position in the Literature</h2>
-      <h3>Open-vocabulary 3D Occupancy: Evolution</h3>
-
-      <table>
-        <thead>
-          <tr><th>Stage</th><th>Representative Works</th><th>Key Idea</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="tag-stage">1. Open-vocabulary alignment</span></td>
-            <td>
-              <a href="https://arxiv.org/abs/2305.16133" target="_blank">OVO (2023)</a><br>
-              <a href="https://arxiv.org/abs/2401.09413" target="_blank">POP-3D (NeurIPS 2023)</a><br>
-              <a href="https://arxiv.org/abs/2407.12294" target="_blank">VEON (ECCV 2024)</a>
-            </td>
-            <td>Distill knowledge from 2D foundation models and CLIP-style supervision into 3D occupancy.</td>
-          </tr>
-          <tr>
-            <td><span class="tag-stage">2. Vision-only modeling</span></td>
-            <td><a href="https://arxiv.org/abs/2407.17310" target="_blank">LangOcc (2024)</a></td>
-            <td>Move toward purely vision-based open-vocabulary occupancy via NeRF-style scene representation.</td>
-          </tr>
-          <tr>
-            <td><span class="tag-stage">3. Efficient sparse representation</span></td>
-            <td><a href="https://arxiv.org/abs/2412.13193" target="_blank">GaussTR (CVPR 2025)</a></td>
-            <td>Replace dense text-vision 3D features with sparse Gaussian blobs for better efficiency.</td>
-          </tr>
-          <tr>
-            <td><span class="tag-stage">4. Progressive refinement</span></td>
-            <td><a href="https://arxiv.org/abs/2510.04759" target="_blank">PG-Occ (ICLR 2026)</a></td>
-            <td>Introduce progressive online densification and anisotropy-aware sampling for finer scene modeling.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="takeaway">
-        <strong>Takeaway.</strong> The evolution can be viewed as:<br>
-        <em>language-aligned occupancy → vision-only modeling → sparse Gaussian efficiency → progressive Gaussian refinement</em>
+    <div class="note-header">
+      <h1>Progressive Gaussian Transformer with Anisotropy-aware Sampling for Open Vocabulary Occupancy Prediction</h1>
+      <div class="note-meta">Chi Yan et al. · ICLR 2026 · Semantic Occupancy Prediction</div>
+      <div class="note-badges">
+        <a href="https://github.com/yanchi-3dv/PG-Occ" target="_blank">
+          <img src="https://img.shields.io/badge/GitHub-Repo-black?logo=github" alt="GitHub" style="border:none; margin:0; border-radius:0;" />
+        </a>
+        <a href="https://arxiv.org/abs/2510.04759" target="_blank">
+          <img src="https://img.shields.io/badge/arXiv-2510.04759-b31b1b?logo=arxiv" alt="arXiv" style="border:none; margin:0; border-radius:0;" />
+        </a>
       </div>
-
     </div>
+
+    <div id="note-body" class="note-body"></div>
   </section>
 
   <footer class="footer">
     <p>&copy; 2026 Yu-Wen Tseng</p>
   </footer>
+
+  <script>
+    fetch("notes/pg-occ.md")
+      .then(function(r) { return r.text(); })
+      .then(function(md) {
+        // Strip YAML front matter
+        var content = md.replace(/^---[\s\S]*?---\n/, "");
+        document.getElementById("note-body").innerHTML = marked.parse(content);
+        renderMathInElement(document.getElementById("note-body"), {
+          delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "$",  right: "$",  display: false}
+          ],
+          throwOnError: false
+        });
+      });
+  </script>
 
 </body>
 </html>

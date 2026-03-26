@@ -6,7 +6,7 @@
   <title>PG-Occ — Folio</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
   <style>
     .note-back {
@@ -168,8 +168,12 @@
   </footer>
 
   <script>
+    var el = document.getElementById("note-body");
     fetch("notes/pg-occ.md")
-      .then(function(r) { return r.text(); })
+      .then(function(r) {
+        if (!r.ok) throw new Error("fetch failed: " + r.status);
+        return r.text();
+      })
       .then(function(md) {
         // 1. Extract math blocks BEFORE marked touches them
         var stash = [];
@@ -191,7 +195,10 @@
           return katex.renderToString(m.expr, {displayMode: m.display, throwOnError: false});
         });
 
-        document.getElementById("note-body").innerHTML = html;
+        el.innerHTML = html;
+      })
+      .catch(function(err) {
+        el.innerHTML = "<p style='color:#c00'>Failed to load note: " + err.message + "</p>";
       });
   </script>
 

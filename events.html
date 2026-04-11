@@ -5,6 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Events — Yu-Wen Tseng</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .carousel {
+      position: relative;
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    .carousel-track img {
+      width: 100%;
+      flex-shrink: 0;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: background 0.2s;
+    }
+    .carousel-btn:hover { background: rgba(0,0,0,0.6); }
+    .carousel-btn.prev { left: 6px; }
+    .carousel-btn.next { right: 6px; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .carousel-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d1d5db;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .carousel-dots span.active { background: #2563eb; }
+
+    @media (max-width: 640px) {
+      .carousel { width: 100%; }
+    }
+  </style>
 </head>
 <body>
 
@@ -27,10 +92,17 @@
     <div class="event-list">
 
       <div class="event-card">
-        <div class="event-photos">
-          <img src="assets/images/events/2024-cvpr/01.jpg" alt="CVPR 2024 - 1" loading="lazy">
-          <img src="assets/images/events/2024-cvpr/02.jpg" alt="CVPR 2024 - 2" loading="lazy">
-          <img src="assets/images/events/2024-cvpr/03.jpg" alt="CVPR 2024 - 3" loading="lazy">
+        <div class="carousel" data-carousel>
+          <div class="carousel-track">
+            <img src="assets/images/events/2024-cvpr/01.jpg" alt="CVPR 2024 - 1">
+            <img src="assets/images/events/2024-cvpr/02.jpg" alt="CVPR 2024 - 2">
+            <img src="assets/images/events/2024-cvpr/03.jpg" alt="CVPR 2024 - 3">
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="active"></span><span></span><span></span>
+          </div>
         </div>
         <div class="event-info">
           <h3>CVPR 2024</h3>
@@ -40,10 +112,17 @@
       </div>
 
       <div class="event-card">
-        <div class="event-photos">
-          <img src="assets/images/events/2024-foxconn/01.jpg" alt="Hon Hai Technology Award - 1" loading="lazy">
-          <img src="assets/images/events/2024-foxconn/02.jpg" alt="Hon Hai Technology Award - 2" loading="lazy">
-          <img src="assets/images/events/2024-foxconn/03.jpg" alt="Hon Hai Technology Award - 3" loading="lazy">
+        <div class="carousel" data-carousel>
+          <div class="carousel-track">
+            <img src="assets/images/events/2024-foxconn/01.jpg" alt="Hon Hai Technology Award - 1">
+            <img src="assets/images/events/2024-foxconn/02.jpg" alt="Hon Hai Technology Award - 2">
+            <img src="assets/images/events/2024-foxconn/03.jpg" alt="Hon Hai Technology Award - 3">
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">&#8249;</button>
+          <button class="carousel-btn next" aria-label="Next">&#8250;</button>
+          <div class="carousel-dots">
+            <span class="active"></span><span></span><span></span>
+          </div>
         </div>
         <div class="event-info">
           <h3>Hon Hai Technology Award</h3>
@@ -53,8 +132,13 @@
       </div>
 
       <div class="event-card">
-        <div class="event-photos event-photos--single">
-          <img src="assets/images/events/2025-epson/01.jpg" alt="Epson Innovation Contest" loading="lazy">
+        <div class="carousel" data-carousel>
+          <div class="carousel-track">
+            <img src="assets/images/events/2025-epson/01.jpg" alt="Epson Innovation Contest">
+          </div>
+          <div class="carousel-dots">
+            <span class="active"></span>
+          </div>
         </div>
         <div class="event-info">
           <h3>Epson Innovation Contest</h3>
@@ -70,6 +154,26 @@
   <footer class="footer">
     <p>&copy; 2026 Yu-Wen Tseng</p>
   </footer>
+
+  <script>
+    document.querySelectorAll('[data-carousel]').forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const imgs = track.querySelectorAll('img');
+      const dots = carousel.querySelectorAll('.carousel-dots span');
+      let current = 0;
+
+      function goTo(n) {
+        current = (n + imgs.length) % imgs.length;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        track.style.transition = 'transform 0.3s ease';
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      carousel.querySelector('.prev')?.addEventListener('click', () => goTo(current - 1));
+      carousel.querySelector('.next')?.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    });
+  </script>
 
 </body>
 </html>
